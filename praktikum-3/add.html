@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task - ChronoPlan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="navbar">
+    <span style="color: #333;">ChronoPlan</span>
+</div>
+
+<div class="add-layout">
+    <div class="form-box-purple">
+        <h2 style="text-align:center; margin-bottom:20px; color: #fff;">Add New Task</h2>
+        
+        <label style="color: #fff;">Task Title</label>
+        <input type="text" placeholder="Enter task title...">
+
+        <label style="color: #fff; display: block; margin-top: 15px;">Status</label>
+        <select>
+            <option>Pending</option>
+            <option>In Progress</option>
+            <option>Completed</option>
+        </select>
+
+        <div style="display: flex; gap: 15px; margin-top: 15px;">
+            <div style="flex: 1;">
+                <label style="color: #fff; display: block;">Start Date</label>
+                <input type="date">
+            </div>
+            <div style="flex: 1;">
+                <label style="color: #fff; display: block;">End Date</label>
+                <input type="date">
+            </div>
+        </div>
+
+        <label style="color: #fff; display: block; margin-top: 15px;">Description</label>
+        <textarea rows="4" placeholder="Enter task description..."></textarea>
+
+        <div style="margin-top:30px; display:flex; gap:10px;">
+            <a href="dashboard.html" class="btn btn-primary" style="flex:1">Save Task</a>
+            <a href="dashboard.html" class="btn btn-soft" style="flex:1">Cancel</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
