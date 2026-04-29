@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Real-Time Dynamic Dashboard</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            transition: background 3s ease-in-out; 
+            color: white;
+        }
+
+        .morning { background: linear-gradient(to bottom, #FFB75E, #ED8F03); }
+        .noon { background: linear-gradient(to bottom, #4CA1AF, #C4E0E5); } 
+        .afternoon { background: linear-gradient(to bottom, #e96443, #904e95); } 
+        .night { background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364); }
+
+        #celestial {
+            position: absolute;
+            top: 15%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            transition: all 3s ease;
+            z-index: 1;
+        }
+
+        .morning #celestial {
+            background: radial-gradient(circle, #fff9c4, #fdd835);
+            box-shadow: 0 0 50px #fbc02d;
+        }
+
+        .noon #celestial {
+            background: radial-gradient(circle, #ffffff, #fffde7);
+            box-shadow: 0 0 80px 20px #ffffff;
+            width: 130px; height: 130px;
+        }
+
+        .afternoon #celestial {
+            background: radial-gradient(circle, #ffcc80, #ef6c00);
+            box-shadow: 0 0 60px #e65100;
+            top: 30%;
+        }
+
+        .night #celestial {
+            background: radial-gradient(circle, #f5f5f5, #bdbdbd);
+            box-shadow: 0 0 30px #eeeeee;
+            top: 10%;
+        }
+
+        .stars {
+            position: absolute; width: 100%; height: 100%;
+            background: radial-gradient(white 1px, transparent 0);
+            background-size: 70px 70px;
+            opacity: 0; transition: opacity 3s;
+        }
+        .night .stars { opacity: 0.4; }
+
+        .container {
+            z-index: 10;
+            text-align: center;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+        }
+        h1 { font-size: 4.5rem; letter-spacing: 5px; margin-bottom: 15px; }
+        #clock { 
+            font-size: 2rem; 
+            background: rgba(255,255,255,0.15); 
+            backdrop-filter: blur(5px);
+            padding: 10px 30px; 
+            border-radius: 50px; 
+            display: inline-block;
+        }
+
+        .city-container {
+            position: absolute;
+            bottom: -10px;
+            width: 200%;
+            height: 250px;
+            display: flex;
+            animation: moveCity 30s linear infinite;
+            z-index: 5;
+            opacity: 0.6;
+        }
+        .city-segment {
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200"><path d="M0,200 L0,150 L40,150 L40,80 L90,80 L90,160 L140,160 L140,50 L200,50 L200,170 L260,170 L260,20 L330,20 L330,180 L380,180 L380,100 L430,100 L430,190 L480,190 L480,40 L550,40 L550,170 L620,170 L620,10 L690,10 L690,180 L750,180 L750,90 L820,90 L820,190 L890,190 L890,60 L1000,60 L1000,200 Z" fill="black"/></svg>');
+            background-repeat: repeat-x;
+            background-size: cover;
+        }
+
+        @keyframes moveCity {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body id="bodyTag">
+
+    <div class="stars"></div>
+    <div id="celestial"></div>
+
+    <div class="container">
+        <h1 id="greeting">...</h1>
+        <div id="clock">00:00:00</div>
+    </div>
+
+    <div class="city-container">
+        <div class="city-segment"></div>
+        <div class="city-segment"></div>
+    </div>
+
+    <script src="praktikum-8.js"></script>
+</body>
+</html>
