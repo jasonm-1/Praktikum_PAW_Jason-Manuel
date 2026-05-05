@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List</title>
+</head>
+<body>
+<h1>To-Do List</h1>
+<input type="text" id="taskInput" placeholder="Enter task">
+<button id="addButton">Add</button>
+<ul id="taskList"></ul>
+
+<script>
+    const taskInput = document.getElementById('taskInput');
+    const addButton = document.getElementById('addButton');
+    const taskList = document.getElementById('taskList');
+    
+    async function loadTasks() {
+        try {
+            const response = await fetch('api.php?action=get');
+            const tasks = await response.json();
+            taskList.innerHTML = '';
+            tasks.forEach(task => {
+                const li = document.createElement('li');
+                li.textContent = task.task;
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', () => deleteTask(task.id));
+                li.appendChild(deleteButton);
+                taskList.appendChild(li);
+            });
+        } catch (error) {
+            console.error('Error loading tasks:', error);
+        }
+    }
+    
+    async function addTask() {
+        const task = taskInput.value.trim();
+        if (task) {
+            try {
+                const response = await fetch('api.php?action=add', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: `task=${encodeURIComponent(task)}`
+                });
+                const data = await response.json();
+                if (data.success) {
+                    taskInput.value = '';
+                    loadTasks();
+                } else {
+                    console.error('Error adding task:', data.error);
+                }
+            } catch (error) {
+                console.error('Error adding task:', error);
+            }
+        }
+    }
+    
+    async function deleteTask(id) {
+        try {
+            const response = await fetch('api.php?action=delete', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `id=${id}`
+            });
+            const data = await response.json();
+            if (data.success) {
+                loadTasks();
+            } else {
+                console.error('Error deleting task:', data.error);
+            }
+        } catch (error) {
+            console.error('Error deleting task:', error);
+        }
+    }
+    
+    addButton.addEventListener('click', addTask);
+    loadTasks(); // Load tasks on page load
+</script>
+</body>
+</html>
