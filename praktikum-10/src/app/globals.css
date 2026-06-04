@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+body {
+  background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #e0c3fc, #c2e9fb);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  color: #374151; 
+  min-height: 100vh;
+  margin: 0;
+  scroll-behavior: smooth; 
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+  border-radius: 1.25rem;
+}
+
+.glass-input {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #374151;
+  transition: all 0.3s ease;
+}
+
+.glass-input:focus {
+  outline: none;
+  background: rgba(255, 255, 255, 0.5);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.glass-button {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  color: #374151;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.7);
+  transform: translateY(-2px);
+}
+
+.glass-button-primary {
+  background: rgba(147, 197, 253, 0.4);
+  border-color: rgba(147, 197, 253, 0.6);
+  color: #1e3a8a;
+}
+.glass-button-primary:hover:not(:disabled) {
+  background: rgba(147, 197, 253, 0.7);
+}
+
+.glass-button-warning {
+  background: rgba(253, 230, 138, 0.5);
+  border-color: rgba(253, 230, 138, 0.7);
+  color: #92400e;
+}
+.glass-button-warning:hover:not(:disabled) {
+  background: rgba(253, 230, 138, 0.8);
+}
+
+.glass-button-danger {
+  background: rgba(252, 165, 165, 0.4);
+  border-color: rgba(252, 165, 165, 0.6);
+  color: #7f1d1d;
+}
+.glass-button-danger:hover:not(:disabled) {
+  background: rgba(252, 165, 165, 0.7);
+}
